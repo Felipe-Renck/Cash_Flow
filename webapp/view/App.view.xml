@@ -1,0 +1,55 @@
+<mvc:View controllerName="app.controller.App"
+	xmlns="sap.suite.ui.commons"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:layout="sap.ui.layout" height="100%">
+	<m:Page id="homePageId" class="sapDemokitSuiteChartContainerFixFlex" title="Fluxo de Caixa" titleAlignment="Center" enableScrolling="true" busyIndicatorDelay="0">
+		<m:content>
+			<layout:FixFlex>
+				<layout:flexContent>
+					<ChartContainer class="sapUiResponsiveContentPadding" id="chartContainer" showFullScreen="true" showPersonalization="false" autoAdjustHeight="true" personalizationPress="attachPersonalizationPress" contentChange="attachContentChange" title="Vendas x Mês">
+						<content>
+							<ChartContainerContent icon="sap-icon://line-chart" title="Line Chart">
+								<content>
+									<viz:VizFrame xmlns="sap.viz" id="idStackedChart" vizType="line" width="100%" height="100%">
+									</viz:VizFrame>
+								</content>
+							</ChartContainerContent>
+							<ChartContainerContent icon="sap-icon://table-view" title="Table">
+								<content>
+									<m:Table items="{Model>/items}">
+										<m:columns>
+											<m:Column>
+												<m:Label text="Mês"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Vendas"/>
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													<m:ObjectIdentifier text="{Model>monthText}"/>
+													<m:ObjectIdentifier text="R$ {Model>totalsales}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</content>
+							</ChartContainerContent>
+						</content>
+						<dimensionSelectors>
+							<m:Select id="idoSelect1" change="handleSelectionChange">
+								<core:Item key="0" text="Vendas X Mês"/>
+								<core:Item key="1" text="Vendas X Vendedor"/>
+							</m:Select>
+						</dimensionSelectors>
+					</ChartContainer>
+				</layout:flexContent>
+			</layout:FixFlex>
+		</m:content>
+	</m:Page>
+</mvc:View>
